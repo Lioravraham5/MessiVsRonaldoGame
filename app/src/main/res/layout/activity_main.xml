@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--background image-->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/main_IMG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@drawable/soccer_field_background" />
+
+
+
+    <!--hearts layout-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/hearts_layout"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <!--heart3-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_IMG_heart3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/heart" />
+
+        <!--heart2-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_IMG_heart2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/hearts_gap"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/heart" />
+
+        <!--heart1-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_IMG_heart1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/heart" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--objects matrix layout-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/obstacles_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hearts_layout"
+        android:layout_above="@id/buttons_layout">
+
+        <!--col 0-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!--matrix[0][0]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos00"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[1][0]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[2][0]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[3][0]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[4][0]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[5][0]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--col 1-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!--matrix[0][1]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[1][1]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[2][1]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[3][1]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[4][1]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[5][1]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos51"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--col 2-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!--matrix[0][2]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos02"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[1][2]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[2][2]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[3][2]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[4][2]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+            <!--matrix[5][2]-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_obsticlePos52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@drawable/ronaldo" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--player array layout-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/player_layout_height"
+        android:layout_weight="1"
+        android:layout_above="@id/buttons_layout"
+        android:orientation="horizontal">
+
+        <!--array[0]-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_IMG_messiPos0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:srcCompat="@drawable/messi" />
+
+        <!--array[1]-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_IMG_messiPos1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:srcCompat="@drawable/messi" />
+
+        <!--array[2]-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_IMG_messiPos2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:srcCompat="@drawable/messi" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--buttons layout-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/buttons_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp">
+
+        <!--left button-->
+        <ImageButton
+            android:id="@+id/main_BTN_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="HardcodedText"
+            android:scaleType="centerCrop"
+            android:background="@drawable/left_button"/>
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="0dp"/>
+
+        <!--right button-->
+        <ImageButton
+            android:id="@+id/main_BTN_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:background="@drawable/right_button"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</RelativeLayout>
