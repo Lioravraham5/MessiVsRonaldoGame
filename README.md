@@ -1,4 +1,5 @@
-This is my first android game. This is an assignment for introduction to cellular applications.
+This is my first android game. 
+This is an assignment for introduction to cellular applications.
 
 
 
