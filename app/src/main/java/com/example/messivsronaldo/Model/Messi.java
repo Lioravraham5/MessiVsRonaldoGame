@@ -1,6 +1,8 @@
 package com.example.messivsronaldo.Model;
 
 public class Messi {
+    private final int MAX_RIGHT_POSITION = 4;
+    private final int MAX_LEFT_POSITION = 0;
     private int positionIndex;
 
     public Messi(){
@@ -17,7 +19,7 @@ public class Messi {
     }
 
     public boolean moveMessiRight(){
-        if(!(positionIndex == 2)){
+        if(!(positionIndex == MAX_RIGHT_POSITION)){
             positionIndex++;
             return true;
         }
@@ -26,11 +28,10 @@ public class Messi {
     }
 
     public boolean moveMessiLeft(){
-        if (!(positionIndex == 0)){
+        if (!(positionIndex == MAX_LEFT_POSITION)){
             positionIndex--;
             return true;
         }
-
         else
             return false;
     }

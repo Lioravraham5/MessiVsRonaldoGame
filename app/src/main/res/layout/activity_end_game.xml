@@ -14,16 +14,53 @@
         android:scaleType="centerCrop"
         tools:srcCompat="@drawable/soccer_field_background" />
 
-    <!--background image-->
+    <!--Game over text-->
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/end_game_LBL_gameOver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/end_game_buttons_layout"
         android:layout_centerInParent="true"
         android:textSize="70sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:text="Game Over!"
+        android:layout_marginBottom="35dp"
         android:gravity="center" />
+
+    <!--buttons layout-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/end_game_buttons_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="16dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!--back to menu button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/end_game_BTN_back_to_menu"
+            android:layout_width="@dimen/main_button_width_250dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Back to menu"
+            tools:ignore="HardcodedText"
+            android:backgroundTint="@color/blue_200_dark"
+            android:textSize="32sp"/>
+
+        <!--records table button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/end_game_BTN_records_table"
+            android:layout_width="@dimen/main_button_width_250dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Records table"
+            tools:ignore="HardcodedText"
+            android:backgroundTint="@color/blue_200_dark"
+            android:textSize="32sp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </RelativeLayout>

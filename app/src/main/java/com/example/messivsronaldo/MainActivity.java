@@ -1,283 +1,175 @@
 package com.example.messivsronaldo;
 
-import androidx.annotation.RequiresApi;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.bumptech.glide.Glide;
-import com.example.messivsronaldo.Logic.GameManager;
+import androidx.core.app.ActivityCompat;
 
-import android.content.Context;
+import android.Manifest;
 import android.content.Intent;
-import android.os.Build;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
-import android.view.View;
-import android.widget.ImageButton;
+import android.text.TextUtils;
+import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
-import com.example.messivsronaldo.Model.FallItem;
-import com.example.messivsronaldo.Model.Ronaldo;
+import com.bumptech.glide.Glide;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
+import com.google.android.material.textview.MaterialTextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //field:
-    private final long TIMER_DELAY = 500;
-    private final String RIGHT = "Right";
-    private final String LEFT = "Left";
-    private final int ROWS_FALLITEM_MATRIX = 6;
-    private final int COLUMNS_FALLITEM_MATRIX =3;
-    private final String CRASHED_MESSAGE = "Crashed!";
-
     private ShapeableImageView main_IMG_background;
-    private ImageButton main_BTN_left;
-    private ImageButton main_BTN_right;
-    private ShapeableImageView[][] main_IMG_FallItemsPositionsMatrix;
-    private ShapeableImageView[] main_IMG_playerPositionsArray;
-    private ShapeableImageView[] main_IMG_hearts;
-    private GameManager gameManager;
-    private Timer timer;
+    private MaterialButton main_BTN_start_game;
+    private MaterialButton main_BTN_records_table;
+    private ToggleButton main_BTN_easy_or_hard_difficulty;
+    private ToggleButton main_BTN_buttons_or_sensors_mode;
+    private EditText main_edit_text;
 
+    MediaPlayer backgroundMusic;
+
+    //for map
+    public static final int FINE_PERMISSION_CODE = 1;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private Location currentLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        gameManager = new GameManager();
-
         findViews();
-        initializationViews();
+        intializeViews();
 
-        main_BTN_right.setOnClickListener(view -> movePlayer(RIGHT)); //right click
-        main_BTN_left.setOnClickListener(view -> movePlayer(LEFT)); //left click
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        setCurrentLocation();
 
-        startTimer();
+        main_BTN_start_game.setOnClickListener(view -> startGame());
 
-
+        main_BTN_records_table.setOnClickListener(view -> moveRecordsTableActivity());
     }
 
-    private void refreshUI() {
-        //game lost
-        if(gameManager.isGameLost())
-            gameOver();
-
-        //game on
-        else{
-            if (gameManager.getNumOfEncounters() != 0)
-                main_IMG_hearts[main_IMG_hearts.length - gameManager.getNumOfEncounters()].setVisibility(View.INVISIBLE); //main_IMG_hearts.length - gameManager.getNumOfEncounters = index of the heart that we want to disappear
-            addFallItemToTheGameAndUpdatePositions();
-        }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        playMusic();
     }
 
-    private void gameOver() {
-        timer.cancel();
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopMusic();
+    }
 
-        //move to EndGame activity
-        Intent endGameIntent = new Intent(this, EndGame.class);
-        startActivity(endGameIntent);
+    private void moveRecordsTableActivity() {
+
+
+
+        Intent recordsTableIntent = new Intent(this, RecordsTableActivity.class);
+        startActivity(recordsTableIntent);
 
         //kill main activity:
-        finish();
-    }
-
-    private void startTimer() {
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(() -> refreshUI());
-            }
-        }, TIMER_DELAY, TIMER_DELAY);
-    }
-
-    private void movePlayer(String direction) {
-        //move right
-        if(direction.equals(RIGHT))
-            gameManager.getMessi().moveMessiRight();
-
-        //move left
-        if(direction.equals(LEFT))
-            gameManager.getMessi().moveMessiLeft();
-
-        updatePlayerPosition();
+        //finish();
     }
 
 
-    private void updatePlayerPosition(){
+    private void startGame() {
 
-        //invisible all the player position:
-        for (int i = 0; i < main_IMG_playerPositionsArray.length; i++) {
-            main_IMG_playerPositionsArray[i].setVisibility(View.INVISIBLE);
+        if (currentLocation == null){
+            Toast.makeText(this, "Location permission denied, please allow the permission", Toast.LENGTH_LONG).show();
+            return;
         }
 
-        //visible the current player position:
-        int currentPositionPlayer = gameManager.getMessi().getPositionIndex();
-        main_IMG_playerPositionsArray[currentPositionPlayer].setVisibility(View.VISIBLE);
-    }
+        if(isNameEntered()){
+            Intent startGameIntent = new Intent(this, GameActivity.class);
+            startGameIntent.putExtra(GameActivity.DIFFICULTY, main_BTN_easy_or_hard_difficulty.getText());
+            startGameIntent.putExtra(GameActivity.MODE, main_BTN_buttons_or_sensors_mode.getText());
+            startGameIntent.putExtra(GameActivity.PLAYER_NAME, main_edit_text.getText().toString());
+            startGameIntent.putExtra(GameActivity.LATITUDE, currentLocation.getLatitude());
+            startGameIntent.putExtra(GameActivity.LONGITUDE, currentLocation.getLongitude());
 
-    private void addFallItemToTheGameAndUpdatePositions(){
+            startActivity(startGameIntent);
 
-        //check encounter
-        if(gameManager.isThereEncounter()){
-            vibrate();
-            toast(CRASHED_MESSAGE);
+            //kill main activity:
+            finish();
         }
 
-        //invisible all the fall Items
-        for (FallItem item: gameManager.getCurrrentFallItemsList()) {
-            int row = item.getRowNumber();
-            int col = item.getColumnNumber();
-            main_IMG_FallItemsPositionsMatrix[row][col].setVisibility(View.INVISIBLE);
+    }
+
+    private boolean isNameEntered() {
+        if(TextUtils.isEmpty(main_edit_text.getText())){
+            main_edit_text.setError("You must enter a name");
+            return false;
         }
-
-        //create new fall item, add it to the list, check encounter and update position
-        gameManager.addAndUpdateFallItems();
-
-        //visible all the fall items:
-        updateFallItemsVisibility();
+        else
+            return true;
     }
 
-    private void toast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
+    private void findViews() {
 
-    private void vibrate() {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        //background image:
+        main_IMG_background = findViewById(R.id.main_IMG_background);
 
-        // Vibrate for 500 milliseconds
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        }
-        else {
-            //deprecated in API 26
-            v.vibrate(500);
-        }
-    }
+        //buttons:
+        main_BTN_start_game = findViewById(R.id.main_BTN_start_game);
+        main_BTN_records_table = findViewById(R.id.main_BTN_records_table);
+        main_BTN_easy_or_hard_difficulty = findViewById(R.id.main_BTN_easy_or_hard_difficulty);
+        main_BTN_buttons_or_sensors_mode = findViewById((R.id.main_BTN_buttons_or_sensors_mode));
 
-    private void updateFallItemsVisibility() {
+        //edit text
+        main_edit_text = findViewById(R.id.main_edit_text);
 
-        for (FallItem item: gameManager.getCurrrentFallItemsList()) {
-            int row = item.getRowNumber();
-            int col = item.getColumnNumber();
-            main_IMG_FallItemsPositionsMatrix[row][col].setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void initializationViews() {
-
-        initBackgroundView();
-        initHeartsViews();
-        initPlayerViews();
-        initFallItemViews();
-        initializationVisibility();
 
     }
 
-    private void initFallItemViews() {
-        for (int i = 0; i < ROWS_FALLITEM_MATRIX; i++) {
-            for (int j = 0; j < COLUMNS_FALLITEM_MATRIX; j++) {
-                Glide
-                        .with(this)
-                        .load(R.drawable.ronaldo)
-                        .into(main_IMG_FallItemsPositionsMatrix[i][j]);
-            }
-        }
-    }
-
-    private void initBackgroundView() {
+    private void intializeViews() {
+       //initialize background
         Glide
                 .with(this)
                 .load(R.drawable.soccer_field_background)
                 .into(main_IMG_background);
     }
 
-    private void initializationVisibility() {
-
-        //set initial hearts visibility
-        initHeartsVisibility();
-
-        //set initial player visibility
-        initPlayerVisibility();
-
-        //set initial fall items visibility
-        initFalLItemsVisibility();
-
-    }
-
-    private void initFalLItemsVisibility() {
-        for (int i = 0; i < GameManager.ROWS_OF_FALL_ITEMS_MATRIX; i++) {
-            for (int j = 0; j < GameManager.COLUMNS_OF_FALL_ITEMS_MATRIX; j++) {
-                main_IMG_FallItemsPositionsMatrix[i][j].setVisibility(View.INVISIBLE);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == FINE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                setCurrentLocation();
             }
+        } else {
+            Toast.makeText(this, "Location permission denied, please allow the permission", Toast.LENGTH_LONG).show();
         }
     }
 
-    private void initPlayerVisibility() {
-        main_IMG_playerPositionsArray[0].setVisibility(View.INVISIBLE);
-        main_IMG_playerPositionsArray[1].setVisibility(View.VISIBLE);
-        main_IMG_playerPositionsArray[2].setVisibility(View.INVISIBLE);
-    }
-
-    private void initHeartsVisibility() {
-        for (int i = 0; i < main_IMG_hearts.length; i++) {
-            main_IMG_hearts[i].setVisibility(View.VISIBLE);
+    private void setCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //request runtime permission from the user
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, FINE_PERMISSION_CODE);
+            return;
         }
-    }
-
-    private void initHeartsViews() {
-        for (int i = 0; i < main_IMG_hearts.length; i++) {
-            Glide
-                    .with(this)
-                    .load(R.drawable.heart)
-                    .into(main_IMG_hearts[i]);
-        }
-    }
-
-    public  void initPlayerViews(){
-        for (int i = 0; i < main_IMG_playerPositionsArray.length; i++) {
-            Glide
-                    .with(this)
-                    .load(R.drawable.messi)
-                    .into(main_IMG_playerPositionsArray[i]);
-        }
-    }
-
-    private void findViews() {
-
-        //background:
-        main_IMG_background = findViewById(R.id.main_IMG_background);
-
-        //buttons:
-        main_BTN_left = findViewById(R.id.main_BTN_left);
-        main_BTN_right = findViewById(R.id.main_BTN_right);
-
-        //hearts;
-        main_IMG_hearts = new ShapeableImageView[] {
-          findViewById(R.id.main_IMG_heart1), findViewById(R.id.main_IMG_heart2), findViewById(R.id.main_IMG_heart3),
-        };
-
-        //obsticals Matrix positions
-        main_IMG_FallItemsPositionsMatrix = new ShapeableImageView[][] {
-                        {findViewById(R.id.main_IMG_obsticlePos00), findViewById(R.id.main_IMG_obsticlePos01), findViewById(R.id.main_IMG_obsticlePos02)},
-                        {findViewById(R.id.main_IMG_obsticlePos10), findViewById(R.id.main_IMG_obsticlePos11), findViewById(R.id.main_IMG_obsticlePos12)},
-                        {findViewById(R.id.main_IMG_obsticlePos20), findViewById(R.id.main_IMG_obsticlePos21), findViewById(R.id.main_IMG_obsticlePos22)},
-                        {findViewById(R.id.main_IMG_obsticlePos30), findViewById(R.id.main_IMG_obsticlePos31), findViewById(R.id.main_IMG_obsticlePos32)},
-                        {findViewById(R.id.main_IMG_obsticlePos40), findViewById(R.id.main_IMG_obsticlePos41), findViewById(R.id.main_IMG_obsticlePos42)},
-                        {findViewById(R.id.main_IMG_obsticlePos50), findViewById(R.id.main_IMG_obsticlePos51), findViewById(R.id.main_IMG_obsticlePos52)}
-        };
-
-        //player array positions
-        main_IMG_playerPositionsArray = new ShapeableImageView[] {
-                findViewById(R.id.main_IMG_messiPos0), findViewById(R.id.main_IMG_messiPos1), findViewById(R.id.main_IMG_messiPos2)
-        };
-
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
+            if (location != null) {
+                currentLocation = location;
+            }
+        });
 
     }
+
+    private void playMusic() {
+        backgroundMusic = MediaPlayer.create(this, R.raw.start_manu_song);
+        backgroundMusic.start();
+    }
+
+    public void stopMusic(){
+        backgroundMusic.stop();
+    }
+
+
+
 }

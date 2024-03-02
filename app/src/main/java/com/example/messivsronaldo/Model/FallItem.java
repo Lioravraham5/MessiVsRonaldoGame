@@ -5,9 +5,9 @@ import java.util.Random;
 public abstract class FallItem {
 
     protected int rowNumber = 0;
-    protected int columnNumber = (new Random()).nextInt(3);
+    protected int columnNumber = (new Random()).nextInt(5);
 
-    public FallItem(){
+    public FallItem( ){
 
     }
 
@@ -28,4 +28,6 @@ public abstract class FallItem {
         this.columnNumber = columnNumber;
         return this;
     }
+
+
 }

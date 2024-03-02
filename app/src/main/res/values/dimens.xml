@@ -2,4 +2,5 @@
 <resources>
     <dimen name="hearts_gap">10dp</dimen>
     <dimen name="player_layout_height">100dp</dimen>
+    <dimen name="main_button_width_250dp">300dp</dimen>
 </resources>

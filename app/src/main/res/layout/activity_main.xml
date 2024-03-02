@@ -14,302 +14,87 @@
         android:scaleType="centerCrop"
         tools:srcCompat="@drawable/soccer_field_background" />
 
-
-
-    <!--hearts layout-->
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/hearts_layout"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal">
-
-        <!--heart3-->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/main_IMG_heart3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/heart" />
-
-        <!--heart2-->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/main_IMG_heart2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/hearts_gap"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/heart" />
-
-        <!--heart1-->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/main_IMG_heart1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/heart" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <!--objects matrix layout-->
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/obstacles_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/hearts_layout"
-        android:layout_above="@id/buttons_layout">
-
-        <!--col 0-->
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <!--matrix[0][0]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos00"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[1][0]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[2][0]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[3][0]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[4][0]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos40"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[5][0]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos50"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <!--col 1-->
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <!--matrix[0][1]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos01"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[1][1]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[2][1]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[3][1]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos31"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[4][1]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos41"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[5][1]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos51"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <!--col 2-->
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <!--matrix[0][2]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos02"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[1][2]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[2][2]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[3][2]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[4][2]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos42"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-            <!--matrix[5][2]-->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/main_IMG_obsticlePos52"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@drawable/ronaldo" />
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <!--player array layout-->
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/player_layout_height"
-        android:layout_weight="1"
-        android:layout_above="@id/buttons_layout"
-        android:orientation="horizontal">
-
-        <!--array[0]-->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/main_IMG_messiPos0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:srcCompat="@drawable/messi" />
-
-        <!--array[1]-->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/main_IMG_messiPos1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:srcCompat="@drawable/messi" />
-
-        <!--array[2]-->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/main_IMG_messiPos2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:srcCompat="@drawable/messi" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
     <!--buttons layout-->
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/buttons_layout"
+        android:id="@+id/main_buttons_layout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="32dp">
+        android:orientation="vertical"
+        android:layout_marginBottom="32dp"
+        android:gravity="center">
 
-        <!--left button-->
-        <ImageButton
-            android:id="@+id/main_BTN_left"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <!--start game button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/main_BTN_start_game"
+            android:layout_width="@dimen/main_button_width_250dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:text="Start Game"
+            android:backgroundTint="@color/blue_200_dark"
             tools:ignore="HardcodedText"
-            android:scaleType="centerCrop"
-            android:background="@drawable/left_button"/>
+            android:textSize="32sp"/>
 
-        <View
-            android:layout_width="200dp"
-            android:layout_height="0dp"/>
-
-        <!--right button-->
-        <ImageButton
-            android:id="@+id/main_BTN_right"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <!--Records Table button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/main_BTN_records_table"
+            android:layout_width="@dimen/main_button_width_250dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:scaleType="centerCrop"
-            android:background="@drawable/right_button"/>
+            android:text="Records Table"
+            tools:ignore="HardcodedText"
+            android:backgroundTint="#005ECB"
+            android:textSize="32sp"/>
+
+        <!--easy or hard difficulty toggle-->
+        <ToggleButton
+            android:id="@+id/main_BTN_easy_or_hard_difficulty"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton"
+            android:textSize="20sp"
+            android:textOff="Easy Mode"
+            android:textOn="Hard Mode"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/blue_200"
+            />
+
+        <!--buttons/sensor mode toggle-->
+        <ToggleButton
+            android:id="@+id/main_BTN_buttons_or_sensors_mode"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textOff="Buttons Mode"
+            android:textOn="Sensors Mode"
+            android:backgroundTint="@color/blue_200"
+            />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <!--edit text input layout-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/main_edit_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/main_buttons_layout"
+        android:layout_marginBottom="16dp"
+        >
+
+        <EditText
+            android:id="@+id/main_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your name"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:gravity="center"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 </RelativeLayout>
