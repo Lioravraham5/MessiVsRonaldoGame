@@ -19,17 +19,26 @@ Control Options: Players have the flexibility to choose between using buttons or
 
 # ScreenShots
 
-Start menu screen:
-![WhatsApp Image 2024-03-02 at 17 26 24](https://github.com/Lioravraham5/MessiVsRonaldoGame/assets/159531151/35fb1528-93e8-49b1-a74e-98f3c612d92d)
+**Start menu screen:**
+<div style="display: flex;">
+  <img src="https://github.com/Lioravraham5/MessiVsRonaldoGame/assets/159531151/35fb1528-93e8-49b1-a74e-98f3c612d92d" alt="WelcomePage" width="25%" height="25%">
+</div>
 
-Game over screen:
-![WhatsApp Image 2024-03-02 at 17 26 25](https://github.com/Lioravraham5/MessiVsRonaldoGame/assets/159531151/6e5d845c-36cf-4ae7-b6fd-c92faffd31aa)
 
-Game screen:
-![WhatsApp Image 2024-03-02 at 17 26 24 (2)](https://github.com/Lioravraham5/MessiVsRonaldoGame/assets/159531151/0bdd9aff-6157-481e-b934-ca26cddec3ef)
+**Game over screen:**
+<div style="display: flex;">
+ <img src="https://github.com/Lioravraham5/MessiVsRonaldoGame/assets/159531151/6e5d845c-36cf-4ae7-b6fd-c92faffd31aa" alt="WelcomePage" width="25%" height="25%">
+</div>
 
-Top 10 record screen:
-![WhatsApp Image 2024-03-02 at 17 26 24 (3)](https://github.com/Lioravraham5/MessiVsRonaldoGame/assets/159531151/c10652e8-5bc2-499e-8463-d58a9a920ae8)
+**Game screen:**
+<div style="display: flex;">
+ <img src="https://github.com/Lioravraham5/MessiVsRonaldoGame/assets/159531151/0bdd9aff-6157-481e-b934-ca26cddec3ef" alt="WelcomePage" width="25%" height="25%">
+</div>
+
+**Top 10 record screen:**
+<div style="display: flex;">
+ <img src="https://github.com/Lioravraham5/MessiVsRonaldoGame/assets/159531151/c10652e8-5bc2-499e-8463-d58a9a920ae8" alt="WelcomePage" width="25%" height="25%">
+</div>
 
 
 
